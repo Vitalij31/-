@@ -1,0 +1,643 @@
+\documentclass[11pt]{beamer}
+
+\graphicspath{{Images/}{./}} % Specifies where to look for included images (trailing slash required)
+
+\usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule for better rules in tables
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{etoolbox}
+\usepackage{verbatim} %комментирование больших блоков кода 
+\usepackage[dvipsnames]{xcolor}
+
+\usetheme{Madrid}
+
+\usefonttheme{default} 
+\usepackage{palatino} % Use the Palatino font for serif text
+
+%\usepackage{helvet} % Use the Helvetica font for sans serif text
+\usepackage[default]{opensans} % Use the Open Sans font for sans serif text
+%\usepackage[default]{FiraSans} % Use the Fira Sans font for sans serif text
+%\usepackage[default]{lato} % Use the Lato font for sans serif text
+
+\useinnertheme{circles}
+
+% Определение универсального макроса для создания окружений с цветом
+\newcommand{\definecoloredblock}[3]{
+	\newenvironment<>{#1}[1]{
+		\setbeamercolor{block title}{bg=#2, fg=white}
+		\setbeamercolor{block body}{bg=#3, fg=black}
+		\begin{block}##2{##1}
+		}{\end{block}}
+}
+\definecoloredblock{opr}{red!100}{red!10}
+\definecoloredblock{teo}{orange!100}{orange!10}
+\definecoloredblock{dok}{cyan!100}{cyan!10}
+\definecoloredblock{gip}{blue!100}{blue!10}
+\definecoloredblock{utv}{teal!100}{teal!10}
+\definecoloredblock{fuk}{violet!100}{violet!10}
+\definecoloredblock{aks}{magenta!100}{magenta!10}
+\definecoloredblock{pri}{LimeGreen!100}{LimeGreen!10}
+
+%КРЧ, есть еще block - синий, exampleblock - темнозеленый и alertblock - красный
+% эти самые блоки, прописаны выше, потом надо заменить на наши
+
+\title[Занятие №1]{\textbf{Занятие №1 \vspace{3mm}}} 
+
+\subtitle{Основные аксиомы. Алгебраические выражения. Математический язык. Математическая модель.} 
+
+\author[Упаев Кирилл Анатольевич]{Автор: Упаев Кирилл Анатольевич \\ \vspace{1mm}\scriptsize {Соавтор: Канин Виталий Сергеевич} }
+
+\date[\today]
+
+\begin{document}
+
+\begin{frame}
+	\titlepage 
+\end{frame}
+
+\begingroup
+\setbeamertemplate{background}[grid][step=10, color=blue!6]
+
+%------------------------------------------------
+
+\setbeamertemplate{frametitle}[default][center] %текст загаловков по центру
+
+\subsection{Blocks}
+\begin{frame}[t]
+	\frametitle{\textbf{Основные термины и определения} \scriptsize(1/2)} 
+	
+	\begin{opr}{\textbf {\quadОпределение}}
+		\quadэто формулировка, которая точно и однозначно описывает значение какого-либо термина или понятия.
+	\end{opr}
+	
+	\begin{teo}{\textbf {\quadТеорема}}
+		\quadэто утверждение, которое можно доказать с помощью аксиом, определений и ранее доказанных теорем.
+	\end{teo}
+	
+	\begin{aks}{\textbf {\quadАксиома}}
+		\quadэто утверждение, принимаемое без доказательства, которое служит основой для вывода других утверждений.
+	\end{aks}
+	
+	\begin{fuk}{\textbf {\quadФакт}}
+		\quadэто утверждение, которое является истинным и подтвержденным на основе опыта или доказательства.
+	\end{fuk}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[t]
+	\frametitle{\textbf{Основные термины и определения} \scriptsize(2/2)}
+	
+	\begin{gip}{\textbf{\quadГипотеза}}
+		\quadэто предположение или утверждение, истинность которого еще не доказана.
+	\end{gip}
+	
+	\begin{utv}{\textbf{\quadУтверждение}}
+		\quadэто предложение, которое может быть истинным или ложным.
+	\end{utv}
+	
+	\begin{dok}{\textbf{\quadДоказательство}}
+		\quadэто логическое обоснование истинности утверждения или теоремы, основанное на аксиомах, определениях и ранее доказанных теоремах.
+\end{dok}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[t]
+	\frametitle{\textbf{Аксиомы натуральных чисел \\(Аксиомы Пеано)}}
+	%\framesubtitle{} % Optional subtitle
+	\quad Для того, чтобы дать строгое определение натуральных чисел и сформировать их свойства, были созданы аксиомы Пеано, использующие логические выводы для избежания неопределенностей, эти аксиомы стали фундаментом в арифметике, что позволило математикам строить более сложные теории и с высокой точностью проводить доказательства.
+	
+	\begin{opr}{\textbf{\quadМножество натуральных чисел}}
+		\quadЭто множество \( \mathbb{N} \), для некоторых элементов которого задано отношение «следовать за», которое удовлетворяет следующим аксиомам:
+	\end{opr}
+\end{frame}
+
+%------------------------------------------------
+
+\subsection{Аксиомы натуральных чисел}
+
+\begin{frame}[t]
+	\frametitle{\textbf{Аксиомы натуральных чисел} \scriptsize(1/3)}
+	
+		\begin{aks}{\textbf{\quad А1.} \textbf{(Существование единицы)} }
+			\quad{Существует в $\mathbb{N}$ элемент (который называется единицей), который не следует ни за каким другим.}
+		\vspace{-3mm}
+		\[
+		\exists 1 \in \mathbb{N} : \forall a \in \mathbb{N} \ a' \neq 1
+		\]
+		\end{aks}
+		
+		\begin{aks} {\textbf{\quad A2.} \textbf{(Наследственность)}	} 
+			\quad{Для каждого элемента из $\mathbb{N}$ определен следующий, причем только один.}
+		\vspace{-3mm}
+		\[
+		\forall a \in \mathbb{N} \exists! a' \cdot a'
+		\]
+		\end{aks}
+		
+		\begin{aks}{ \textbf{\quad A3.} \textbf{(Различие)}} 
+			\quad{Любой элемент из $\mathbb{N}$ может следовать не более чем за одним элементом из $\mathbb{N}$.}
+		\vspace{-3mm}
+		\[
+		\forall a, b, c \in \mathbb{N} (c = a' \land c = b') \implies a = b
+		\]
+		\end{aks}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[t]
+	
+	\frametitle{\textbf{Аксиомы натуральных чисел} \scriptsize (2/3)}
+		\begin{aks}{ \quad\textbf{A4.} \textbf{(Ассоциативность)} }
+			\quad{Независимость порядка действий.}
+		\[
+		(a + b) + c = a + (b + c) \quad \text{и} \quad (a \cdot b) \cdot c = a \cdot (b \cdot c) \quad \text{ для всех } a, b, c \in \mathbb{N}
+		\]
+		\end{aks}
+		\begin{aks} {\quad\textbf{А5.} \textbf{(Коммутативность)} }
+			\quad{независимость от перестановки.}
+		\[
+		a + b = b + a \quad \text{и} \quad a \cdot b = b \cdot a \quad \text{для всех } a, b \in \mathbb{N}
+		\]
+		\end{aks}
+		\begin{aks}{\quad\textbf{A6.} \textbf{(Дистрибутивность)} }
+			\quad{правило раскрытия скобок.}
+		\[
+		a \cdot (b + c) = (a \cdot b) + (a \cdot c) \quad \text{для всех } a, b, c \in \mathbb{N}
+		\]
+		\end{aks}
+	
+\end{frame}
+%------------------------------------------------
+\begin{frame}[t]
+	\frametitle{\textbf{Аксиомы натуральных чисел} \scriptsize (3/3)}
+	\begin{aks}{ \quad\textbf{A7.} \textbf{(Полная индукция)} }
+		\quad{Любое множество $M \subseteq \mathbb{N}$, которое одновременно содержит единицу и замкнуто относительно взятия следующего, совпадает с $\mathbb{N}$.}
+		\[
+		\forall M \subseteq \mathbb{N} ((1 \in M \land \forall a \in \mathbb{N} (a 	\in M \implies a' \in M)) \implies M = \mathbb{N})
+		\]
+	\end{aks}
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}[t]
+	\frametitle{\textbf{Аксиомы целых чисел}}
+	
+	\begin{opr}{\quad\textbf{Множество целых чисел}}
+		\quadЭто множество $\mathbb{Z}$, которое включает в себя множество натуральных чисел, ноль, и множество противоположных натуральным числам.
+		\hfill\break
+		\\{\quadОбозначение:} 
+		\[
+		\mathbb{Z} = \mathbb{N} \cup \{0\} \cup \mathbb{N}^{-}
+		\]
+		\hfill\break
+		\quadДанное множество удовлетворяет следующим аксиомам:
+	\end{opr}
+	\begin{pri}{\textbf{\quadПримечание}}
+	{\quadЦелое число - это произвольный элемент из} $\mathbb{Z}$.
+	
+	\end{pri}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+	\frametitle{\textbf{Аксиомы целых чисел}}
+		\vspace{-2mm}
+		\begin{aks}{\quad\textbf{A1.} \textbf{(Натуральные числа)}} 
+			\quad{Натуральные числа включены в целые числа.} \vspace{-4mm}
+			\[ \mathbb{N} \subseteq \mathbb{Z} \]
+		\end{aks}
+		\vspace{-1mm}
+		\begin{aks}{\quad\textbf{A2.} \textbf{(Противоположные числа)} }
+			\quad{Для любого целого числа существует противоположное число, сумма которого с исходным равна нулю.} \vspace{-3mm}
+		\[ \forall a \in \mathbb{Z}, \exists (-a) \in \mathbb{Z} : a + (-a) = 0 \]
+		\end{aks}
+		\vspace{-1mm}
+		\begin{aks}{\quad\textbf{A3.} \textbf{(Сложение)}}
+			 {Целые числа замкнуты относительно операции сложения.} 
+		 	\vspace{-5mm}
+		\[ \forall a, b \in \mathbb{Z}, a + b \in \mathbb{Z} \]
+		\end{aks}
+		\vspace{-1mm}
+		\begin{aks}{\quad\textbf{A4.} \textbf{(Умножение)} }
+			\quad{Целые числа замкнуты относительно операции умножения.} 
+		 \vspace{-4mm}
+		\[ \forall a, b \in \mathbb{Z}, a \cdot b \in \mathbb{Z} \]
+		\end{aks}
+
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}[t]
+	\frametitle{\textbf{Аксиомы Рациональных чисел}}
+		\vspace{-3mm}
+		\begin{opr}{\textbf{\quad Множество рациональных чисел}}
+			\quad Это множество $\mathbb{Q}$, вида \\
+			\[ Q = \frac{m}{n} : m \in \mathbb{N}, n \in \mathbb{N} \]
+		\end{opr}
+		
+		\begin{aks}{\textbf{\quad A1.} \textbf{(Целые числа)}}
+			 \quadЦелые числа включены в рациональные числа.
+		\[ \mathbb{Z} \subseteq \mathbb{Q} \]
+		\end{aks}
+		
+		\begin{aks}{\quad\textbf{A2.} \textbf{(Деление)} }
+			\quad{Для любого $a \in \mathbb{Q}, a \neq 0$, существует обратное число $\frac{1}{a} \in \mathbb{Q}$ такое, что $a \cdot \frac{1}{a} = 1$. \\ \vspace{-3mm}
+		\[ \forall a \in \mathbb{Q} (a \neq 0 \Rightarrow \exists \frac{1}{a} \in \mathbb{Q} : a \cdot \frac{1}{a} = 1) \]}
+		\end{aks}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[t]
+	\frametitle{\textbf{Аксиомы равенства и порядка} \scriptsize(1/2)}
+		\begin{aks}{\textbf{\quad A1.} \textbf{(Рефлексивность)} }
+			\quad$a = a$.
+	\end{aks}
+		
+		\begin{aks}{\textbf{\quad A2.} \textbf{(Симметричность)} }
+			\quadЕсли $a = b$, то $b = a$.
+	\end{aks}
+		
+		\begin{aks}{\textbf{\quad A3.} \textbf{(Транзитивность)} }
+			\quadЕсли $a = b$ и $b = c$, то $a = c$.
+	\end{aks}
+
+\end{frame}
+
+
+%------------------------------------------------
+
+\begin{frame}[t]
+	\frametitle{\textbf{Аксиомы равенства и порядка} \scriptsize(2/2)}
+	\begin{aks}{\quad\textbf{A4.} }
+		\quadДля любых $a, b \in \mathbb{R}$, либо $a < b$, либо $a = b$, либо $a > b$. 
+	\end{aks}
+	
+	\begin{aks}{\quad\textbf{A5.} }
+		\quadЕсли $a < b$ и $b < c$, то $a < c$.
+	\end{aks}
+	
+	\begin{aks}{\quad\textbf{A6.} }
+		\quadЕсли $a < b$, то $a + c < b + c$ для любого $c$.
+	\end{aks}
+	
+	\begin{aks}{\quad\textbf{A7.} }
+		\quadЕсли $a < b$ и $c > 0$, то $a \cdot c < b \cdot c$.
+	\end{aks}
+	
+\end{frame}
+
+
+%------------------------------------------------
+
+\begin{frame}[t]
+	\frametitle{\textbf{Алгебраические выражения}}
+
+		\begin{opr}{\textbf{\quadАлгебраическое выражение}}
+			\quadэто одна или несколько алгебраических величин (чисел и/или переменных), связанных между собой знаками арифметических операций
+		\end{opr}
+		
+		\begin{pri}{\textbf{\quadПримечание}}
+			\quadЕсли дано алгебраическое выражение, то можно говорить о \textit {значении алгебраического выражения}, но только при конкретных значениях входящих в него букв.\\
+			\vspace{4mm}
+			\quadПример: алгебраическое выражение $a + b$ при $a = 5$, $b = 7$ имеет значение 12 (поскольку $a + b = 5 + 7 = 12$)
+		\end{pri}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[t]
+	\quadЗадание 1.1 Вычислите наиболее рациональным способом.
+	\section*{1.14}
+	\begin{itemize}
+		\item[а)] \(\frac{1}{2} + 2\frac{2}{3} + 1\frac{1}{2} +1 \frac{1}{3}\)
+		\vspace{30mm}
+		\item[б)] \(3\frac{2}{5} \cdot 2\frac{3}{7} \cdot 5 \cdot 7\)
+	\end{itemize}
+	
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}[t]
+	\quadЗадание 1.2 Вычислите наиболее рациональным способом.
+
+	\section*{1.15}
+	\begin{itemize}
+		\item[в)] \(4,16 + 2,5 + 6,04 + 3,5\)
+	\end{itemize}
+	\vspace{30mm}
+	\section*{1.16}
+	\begin{itemize}
+		\item[г)] \(7,8 \cdot 6,3 + 7,8 \cdot 13,7\)
+	\end{itemize}
+	
+\end{frame}
+
+%------------------------------------------------
+	\begin{frame}[t]
+		\quad Задание 2. Найти значение числового выражения.
+		\section*{1.18}
+		\begin{itemize}
+			\item[а)] \(\left(8 \frac{7}{12} - 2 \frac{17}{36}\right) \cdot 2,7 - 4 \frac{1}{3} : 0,65\)
+			\vspace{30mm}
+			\item[б)] \(\left(6 \frac{8}{15} - 4 \frac{21}{45}\right) \cdot 4,5 - 2 \frac{1}{6} : 0,52\)
+		\end{itemize}
+		
+	\end{frame}
+%------------------------------------------------
+
+\begin{frame}[t]
+	\quadЗадание 3.1 Упростить выражение и найти его значение
+	\section*{1.25 и 1.26}
+	\begin{itemize}
+		\item[а)] \(-6a + 7b + 3a - 4b, \quad \text{если} \ a = 3,2, \ b = 4,2\)
+		\vspace{30mm}
+		\item[б)] \(14a - 12b - a - b, \quad \text{если} \ a = \frac{2}{7}, \ b = -\frac{5}{7}\)
+	\end{itemize}
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}[t]
+	\quadЗадание 3.2 Упростить выражение и найти его значение
+	\section*{1.25 и 1.26}
+	\begin{itemize}
+		\item[в)] \(3(2x + y) - 4(2y - x), \quad \text{если} \ x = 0,2, \ y = -\frac{2}{5}\)
+		\vspace{30mm}
+		\item[г)] \(2(4a - 0,5b) - (3a - 7b), \quad \text{если} \ a = -0,4, \ b = \frac{1}{3}\)
+	\end{itemize}
+	
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}[t]
+	\section*{1.38}
+	Задание 4: Значение дроби \(\frac{a}{b} = 0\). \hfill\break
+	Что можно сказать о дроби \(\frac{b}{a}\) ? Ответ объясните.
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}[t]
+	\section*{1.39}
+	\quadЗадание 5.	В начале года был сделан вклад в банк на сумму \(X\) рублей, банк даёт \(p\%\) годовых.
+	
+	\begin{itemize}
+		\item[a)] Составьте выражение для вклада в конце третьего года хранения.
+		\vspace{18mm} %отступ в 5 mm = 2 клетки
+	\end{itemize}
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}[t]
+	\section*{1.39}
+		\begin{itemize}
+		\item[б)] Какая сумма будет на счету вкладчика в конце третьего года хранения, если \(X = 10000\), \(p = 10\%\)?
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[t]
+	\section*{1.40}
+	\quadЗадание 6. Найдите последнюю цифру числа \(a\).
+	\begin{itemize}
+		\item[a)] \(a = 213 \cdot 488 \cdot 204 \cdot 317\)
+	\end{itemize}
+	\vspace{15mm}
+	\section*{1.41 и 1.42}
+	\quadЗадание 7. Вычислите наиболее рациональным способом.
+	\begin{itemize}
+		\item[a)] \(28387 + 613 - 997 - 996 \cdot 613\)
+		\vspace{18mm}
+		\item[б)] \(\frac{17}{441} - \frac{21}{576} + \frac{72}{289} \cdot 51 \cdot 7\)
+		\vspace{18mm}
+	\end{itemize}
+	\hfill\break
+	\section*{1.45}
+
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}[t]
+	\quadЗадание 8.1 Сравните числа \(a\) и \(b\):
+	\begin{itemize}
+		\item[a)] \(a = 215 \cdot 428 - 577, \quad b = 216 \cdot 429 - 576\)
+	\end{itemize}
+	\vspace{30mm}
+	\section*{1.46}
+	\begin{itemize}
+		\item[б)] \(a = \frac{991}{993}, \quad b = \frac{779}{781}\)
+
+	\end{itemize}
+	
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}[t]
+		\quadЗадание 8.2 Сравните числа \(a\) и \(b\):
+	\begin{itemize}
+		\item[в)] \(a = \frac{4009}{4006}, \quad b = \frac{2009}{2006}\)
+	\end{itemize}
+	\vspace{30mm}	
+	\section*{1.48}
+	\begin{itemize}
+		\item[г)] \(a = \frac{1}{411} \cdot \frac{1}{412} \cdot \frac{1}{413}, \quad b = \frac{1}{63\,990\,006}\)
+	\end{itemize}
+	
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}[t]
+	Задание 9: Докажите что:
+\begin{itemize}
+	\item[a)] \(\frac{934}{933} - \frac{948}{947} = \frac{1}{933} - \frac{1}{947}\)
+	\vspace{30mm}	
+	\item[б)] \(\frac{785}{787} - \frac{783}{785} = 2 \left( \frac{1}{785} - \frac{1}{787} \right)\)
+\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[t]
+	\frametitle{\textbf{Математический язык}}
+	\section*{Математический язык}
+	\begin{opr}{\textbf{\quadМатематический язык}}
+		\quadЭто способ записи математических высказываний из обычного языка, речи, в язык, использующий знаки, буквы, цифры и иные символы.
+	\end{opr}
+	
+	 \quad С помощью математического языка можно упрощать запись, превращая длинные текста, в короткие выражения.
+	\hfill\break
+	\\\quad Пример: на обычном языке мы говорим: "от перестановки слагаемых, сумма не меняется, а вот так это будет выглядеть на математическом языке: "a + b = b + a"
+
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}[t]
+	\section*{2.1}
+	\quadЗадание 10. Запишите на математическом языке.
+	\begin{itemize}
+		\item[a)] Полусумма чисел \(z\) и \(x\) 
+			\hfill\break \hfill\break
+		\item[б)] квадрат числа \(x\)
+			\hfill\break \hfill\break
+	\end{itemize}
+	
+	\section*{2.2}
+	\begin{itemize}
+		\item[в)] Разность числа \(y\) и частного от деления числа \(a\) на число \(b\)
+		\hfill\break \hfill\break
+	\end{itemize}
+	
+	\section*{2.3}
+	\begin{itemize}
+		\item[г)] Произведение полусуммы чисел \(x\) и \(y\) и числа \(z\)
+	\end{itemize}
+	
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}[t]
+	\section*{2.6}
+	\quad Задание 11. Запишите на математическом языке.
+	\begin{itemize}
+		\item[a)] \(a + (b + c) = (a + b) + c\)
+		\hfill\break \hfill\break
+		\item[б)] \(a + 0 = a\)
+		\hfill\break \hfill\break
+	\end{itemize}
+	
+	\section*{2.7}
+	\begin{itemize}
+		\item[в)] \(a \cdot 0 = 0\)
+		\hfill\break \hfill\break
+		\item[г)] \(\frac{0}{a} = 0, \quad \text{где} \ a \neq 0\)
+		\hfill\break \hfill\break
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[t]
+	\section*{2.16}
+	\quadЗадание 12.1 Запишите утверждения на математическом языке.
+	\begin{itemize}
+		\item[а)] Отношение разности чисел \(c\) и \(d\) к их сумме равно отношению числа
+	\end{itemize}
+	\vspace{20mm}
+	\section*{2.17}
+	\begin{itemize}
+		\item[б)] В верной пропорции произведение крайних членов равно произведению средних
+	\end{itemize}
+
+	
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}[t]
+	\quadЗадание 12.2 Запишите утверждения на математическом языке.
+	\section*{2.23}
+	\begin{itemize}
+		\item[в)] Найдите значение выражения \(x + y\), если \(x\) — полусумма чисел \(38,5\) и \(12,36\), а \(y\) — утроенная разность чисел \(24,39\) и \(16,2\)
+	\end{itemize}
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}[t]
+	\quadЗадание 12.3 Запишите утверждения на математическом языке.
+	\begin{itemize}
+		\item[г)] Остаток от деления натурального числа \(a\) на \(36\) равен \(31\). Чему равен остаток от деления числа \(a\) на \(12\)?
+		\vspace{20mm}
+		\item[д)] Остаток от деления натурального числа \(a\) на \(60\) равен \(17\). Чему равен остаток от деления числа \(3a\) на \(15\)?
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}[t]
+	\frametitle{\textbf{Математическая модель}}
+	\section*{Математическая модель}
+	\vspace{-2mm}
+	\begin{opr}{\textbf{\quad Математическая модель}}
+		\quadэто формализованное описание реальной системы или процесса с помощью математических уравнений, неравенств и других математических объектов.
+	\end{opr}
+		\quadРассмотрим простой пример математической модели для расчета пути, пройденного автомобилем.
+		\vspace{3mm}
+		\quadОписание модели: \\
+		\quadДля описания пути, пройденного автомобилем, используем уравнение движения:
+		\[
+		s = vt
+		\]
+		\quadгде:
+		\begin{itemize}
+			\item \( s \) — путь, пройденный автомобилем,
+			\item \( v \) — скорость автомобиля,
+			\item \( t \) — время движения.
+		\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[t]
+	\section*{3.1}
+		\quadЗадание 14.1 Перейдите от словесной модели к математической
+	\begin{itemize}
+		\item[a)] Число \(a\) на 18 больше числа \(b\)
+		\vspace{30mm}
+		\item[б)] Число \(b\) на 39 меньше числа \(c\)
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[t]
+	\section*{3.1}
+	\quadЗадание 14.2 Перейдите от словесной модели к математической
+	\begin{itemize}
+		\item[в)] Число \(x\) в 6 раз больше числа \(y\)
+		\vspace{30mm}
+		\item[г)] Число \(a\) в 29 раз меньше числа \(b\)
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}[t]
+	\section*{3.2}
+	\quadЗадание 14.3 Перейдите от словесной модели к математической
+	\begin{itemize}
+		\item[д)] Сумма чисел \(a\) и \(b\) равна 43
+		\vspace{30mm}
+		\item[е)] Разность чисел \(t\) и \(n\) равна 214
+	\end{itemize}
+\end{frame}
+%------------------------------------------------
+
+\begin{frame}[t]
+	\quadЗадание 15.1 Составьте математическую модель данной ситуации
+	\begin{itemize}
+	\section*{3.6}
+	\item[a)]Первый рабочий выполняет задание за \(t\) ч, а второй такое же задание — за \(v\) ч, при этом первый работает на 3 ч больше, чем второй
+	\section*{3.9}
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[t]
+		\quadЗадание 15.2 Составьте математическую модель данной ситуации
+	\begin{itemize}
+		\section*{3.9}
+		\item[б)]В первом вагоне находится \(x\) т груза, а во втором — \(y\) т. Если из первого вагона выгрузить \(\frac{4}{5} t\), а во второй добавить \(1 \frac{4}{5} t\), то в обоих вагонах груза станет поровну
+	\end{itemize}
+\end{frame}
+
+%------------------------------------------------
+
+\end{document} 
